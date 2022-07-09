@@ -9,11 +9,18 @@ const TeamDetail = () => {
   if (isFetching) return "Loading...";
 
   return (
-    <>
-      <p>{data.city}</p>
-      <p>{data.full_name}</p>
-    </>
-  );
-};
+
+    <div className="flex flex-col justify-center items-center">
+      <div className="">
+        <img src={`https://cdn.nba.net/assets/logos/teams/secondary/web/${data.abbreviation}.svg`} />
+      </div>
+      <div className="">
+        <p className="text-2xl">{data.full_name}</p>
+        <p>{data.city}</p>
+        <p>{data.conference}</p>
+        <p>{data.division}</p>
+      </div>
+    </div>
+  )};
 
 export default TeamDetail;
