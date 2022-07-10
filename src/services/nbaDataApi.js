@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const cryptoApiHeaders = {
-"X-RapidAPI-Key": process.env.REACT_APP_KEY,
+  "X-RapidAPI-Key": process.env.REACT_APP_KEY,
 "X-RapidAPI-Host": "free-nba.p.rapidapi.com",
 };
 
@@ -23,7 +23,7 @@ export const nbaDataApi = createApi({
       providesTags: ["Teams"],
     }),
     getPlayers: builder.query({
-      query: () => createRequest(`/players`),
+      query: (page = 1) => createRequest(`/players/?page=${page}`),
       providesTags: ["Players"],
     }),
   }),

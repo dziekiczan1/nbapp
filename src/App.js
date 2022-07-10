@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import TeamDetail from "./components/TeamDetail";
 import Teams from "./components/Teams";
 import Home from "./components/Home";
+import Players from "./components/Players";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/teams" element={<Teams />} />
                 <Route path="/teams/:id" element={<TeamDetail />} />
+                <Route path="/players/" element={<Players />} />
               </Routes>
             </Layout>
           </div>

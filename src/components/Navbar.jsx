@@ -31,7 +31,7 @@ const Navbar = () => {
       </div>
       <div className={divStyles}>
         <AiOutlineTeam className={iconStyles} />
-        <p className={linkStyles}>Players</p>
+        <p className={linkStyles}><Link to="/players">Players</Link></p>
       </div>
       <div className={divStyles}>
         <AiOutlineAreaChart className={iconStyles} />

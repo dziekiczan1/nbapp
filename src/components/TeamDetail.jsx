@@ -1,14 +1,11 @@
 import React from "react";
-import { useGetTeamQuery,useGetPlayersQuery } from "../services/nbaDataApi";
+import { useGetTeamQuery } from "../services/nbaDataApi";
 import { useParams } from "react-router-dom";
 
 const TeamDetail = () => {
   const { id } = useParams();
   const { data, isFetching } = useGetTeamQuery(id);
-  const { data: players} = useGetPlayersQuery();
     if (isFetching) return "Loading...";
-
-    console.log(players)
 
   return (
 
@@ -22,9 +19,6 @@ const TeamDetail = () => {
         <p><strong>Conference:</strong> {data.conference}</p>
         <p><strong>Division:</strong> {data.division}</p>
       </div>
-      {players.data.map((player) => {
-        if (player.team.id === data.id ) return <p key={player.id}>{player.first_name}</p>
-      })}
     </div>
   )};
 
