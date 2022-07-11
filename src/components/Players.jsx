@@ -4,13 +4,20 @@ import {
   useGetPlayersNameQuery,
 } from "../services/nbaDataApi";
 import { MdOutlineNavigateNext, MdOutlineNavigateBefore } from "react-icons/md";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 const Players = () => {
   const [page, setPage] = useState("");
   const [name, setName] = useState("");
   const { data: players, isFetching } = useGetPlayersQuery(page);
   // const { data } = useGetPlayersNameQuery(name);
-  console.log(players);
+
   if (isFetching) return "Loading...";
   return (
     <>
@@ -18,24 +25,96 @@ const Players = () => {
         <input placeholder="Search" onChange={(e) => setName(e.target.value)} />
       </div>
       <div>
-        {players.data
-          .filter((val) => {
-            if (name === "") {
-              return val;
-            } else if (
-              val.first_name.toLowerCase().includes(name.toLowerCase())
-            ) {
-              return val;
-            }
-          })
-          .map((player) => (
-            <p key={player.id}>
-              {player.first_name} {player.last_name}
-            </p>
-          ))}
+        <TableContainer
+          component={Paper}
+          style={{
+            width: "100%",
+            margin: "2rem 0rem",
+          }}
+          className="shadow-md"
+        >
+          <Table
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+            aria-label="customized table"
+          >
+            <TableHead>
+              <TableRow
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "row",
+                }}
+              >
+                <TableCell
+                  className="w-1/4 text-bold"
+                  style={{
+                    fontWeight: "700",
+                    textAlign: "right",
+                  }}
+                >
+                  Name
+                </TableCell>
+                <TableCell
+                  className="w-1/4 text-bold"
+                  style={{
+                    fontWeight: "700",
+                    textAlign: "right",
+                  }}
+                >
+                  Position
+                </TableCell>
+                <TableCell
+                  className="w-2/4 text-bold"
+                  style={{
+                    fontWeight: "700",
+                    textAlign: "right",
+                  }}
+                >
+                  Team
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {players.data
+                .filter((val) => {
+                  if (name === "") {
+                    return val;
+                  } else if (
+                    val.first_name.toLowerCase().includes(name.toLowerCase())
+                  ) {
+                    return val;
+                  }
+                })
+                .map((player) => (
+                  <TableRow
+                    key={player.id}
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "row",
+                    }}
+                    className="hover:bg-[#f0f0f0] cursor-pointer"
+                  >
+                    <TableCell component="th" scope="row" className="w-1/4">
+                      {player.first_name} {player.last_name}
+                    </TableCell>
+                    <TableCell align="right" className="w-1/4">
+                      {player.position}
+                    </TableCell>
+                    <TableCell align="right" className="w-2/4">
+                      {player.team.full_name}
+                    </TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
 
-      <div className="flex justify-center items-center gap-5">
+      <div className="flex justify-center items-center gap-5 mb-8">
         {players.meta.current_page === 1 ? null : (
           <>
             <button
