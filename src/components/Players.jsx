@@ -1,38 +1,110 @@
-import React, {useState, useEffect} from 'react'
-import { useGetPlayersQuery } from "../services/nbaDataApi";
-import { Pagination } from 'antd';
+import React, { useState, useEffect } from "react";
+import {
+  useGetPlayersQuery,
+  useGetPlayersNameQuery,
+} from "../services/nbaDataApi";
+import { MdOutlineNavigateNext, MdOutlineNavigateBefore } from "react-icons/md";
 
 const Players = () => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState("");
+  const [name, setName] = useState("");
   const { data: players, isFetching } = useGetPlayersQuery(page);
-
-    if (isFetching) return "Loading...";
-console.log(players.meta.current_page)
-
+  // const { data } = useGetPlayersNameQuery(name);
+  console.log(players);
+  if (isFetching) return "Loading...";
   return (
     <>
-    <div>{players.data.map((player) => (
-        <p key={player.id}>{player.first_name}</p>
-    ))}</div>
+      <div>
+        <input placeholder="Search" onChange={(e) => setName(e.target.value)} />
+      </div>
+      <div>
+        {players.data
+          .filter((val) => {
+            if (name === "") {
+              return val;
+            } else if (
+              val.first_name.toLowerCase().includes(name.toLowerCase())
+            ) {
+              return val;
+            }
+          })
+          .map((player) => (
+            <p key={player.id}>
+              {player.first_name} {player.last_name}
+            </p>
+          ))}
+      </div>
 
-<button onClick={() => setPage((prev) => prev - 1)} >
-          Previous
-        </button>
-        <button
-          onClick={() => setPage((prev) => prev + 1)}
+      <div className="flex justify-center items-center gap-5">
+        {players.meta.current_page === 1 ? null : (
+          <>
+            <button
+              onClick={() => setPage((prev) => prev + -1)}
+              className="border-2 rounded px-2 py-1 cursor-pointer shadow-md text-[#d13c1b] bg-[#F9EBC8] hover:bg-[#d13c1b] hover:text-[#F9EBC8] font-bold text-xl"
+            >
+              <MdOutlineNavigateBefore />
+            </button>
+            <button
+              onClick={() => setPage(1)}
+              className="border-2 rounded px-2 py-1 bg-[#F9EBC8] cursor-pointer shadow-md text-[#d13c1b]   hover:bg-[#d13c1b] hover:text-[#F9EBC8]"
+            >
+              1{" "}
+            </button>
+          </>
+        )}
+        {players.meta.current_page === players.meta.total_pages ? (
+          <button
+            onClick={(e) => setPage(e.target.innerText)}
+            className="border-2 rounded px-2 py-1 bg-[#F9EBC8] cursor-pointer shadow-md text-[#d13c1b]"
+          >
+            {players.meta.current_page - 1}
+          </button>
+        ) : (
+          <button
+            onClick={(e) => setPage(e.target.innerText)}
+            className="border-2 rounded px-2 py-1 bg-[#d13c1b] cursor-pointer shadow-md text-[#F9EBC8] font-bold"
+          >
+            {players.meta.current_page}
+          </button>
+        )}
 
-        >
-         Next
-        </button>
+        {players.meta.current_page === players.meta.total_pages ? null : (
+          <button
+            onClick={(e) => setPage(e.target.innerText)}
+            className="border-2 rounded px-2 py-1 bg-[#F9EBC8] cursor-pointer shadow-md text-[#d13c1b]  hover:bg-[#d13c1b] hover:text-[#F9EBC8]"
+          >
+            {players.meta.next_page}
+          </button>
+        )}
+        <p>...</p>
 
+        {players.meta.current_page === players.meta.total_pages ? (
+          <button
+            onClick={(e) => setPage(e.target.innerText)}
+            className="border-2 rounded px-2 py-1 bg-[#d13c1b] cursor-pointer shadow-md text-[#F9EBC8] font-bold"
+          >
+            {players.meta.total_pages}
+          </button>
+        ) : (
+          <button
+            onClick={(e) => setPage(e.target.innerText)}
+            className="border-2 rounded px-2 py-1 bg-[#F9EBC8] cursor-pointer shadow-md text-[#d13c1b]   hover:bg-[#d13c1b] hover:text-[#F9EBC8]"
+          >
+            {players.meta.total_pages}
+          </button>
+        )}
+
+        {players.meta.current_page === players.meta.total_pages ? null : (
+          <button
+            onClick={() => setPage((prev) => prev + 1)}
+            className="border-2 rounded px-2 py-1 cursor-pointer shadow-md text-[#d13c1b] bg-[#F9EBC8] hover:bg-[#d13c1b] hover:text-[#F9EBC8] font-bold text-xl"
+          >
+            <MdOutlineNavigateNext />
+          </button>
+        )}
+      </div>
     </>
-  )
-}
+  );
+};
 
-// current_page: 1
-// next_page: 2
-// per_page: 25
-// total_count: 3757
-// total_pages: 151
-
-export default Players
+export default Players;

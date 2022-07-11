@@ -14,7 +14,7 @@ const TeamCard = ({ nameTeam, abb, id }) => {
           </div>
         </div>
         <div className="pt-4 hidden md:block">
-          <span className="font-semibold text-xs text-[#d13c1b] flex justify-center items-center">
+          <span className="font-bold text-xs text-[#d13c1b] flex justify-center items-center">
             {nameTeam}
           </span>
         </div>
