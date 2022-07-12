@@ -10,18 +10,24 @@ const CardFlip = ({ data, name }) => {
             src={`https://piotr.rzadkowolski.dev/projects/nbapp/assets/${data}.jpg`}
             alt={data}
             style={{
-              width: "300px",
-              height: "300px",
+              width: "320px",
+              height: "340px",
               borderRadius: "0.375rem",
+              objectFit: "cover",
             }}
           />
-          <h1 className="text-4xl text-white relative bottom-1/4 align-left ml-2 underline decoration-dotted underline-offset-8">
-            {name}
-          </h1>
+          <div
+            className="bg-[#F9EBC8] absolute bottom-0 w-full"
+            style={{ height: "70px" }}
+          >
+            <h1 className="relative p-2 bottom-0 text-4xl text-[#d13c1b] align-left underline decoration-dotted underline-offset-8">
+              {name}
+            </h1>
+          </div>
         </div>
         <div
           className="shadow-xl flip-card-back"
-          style={{ width: "300px", height: "300px" }}
+          style={{ width: "320px", height: "350px" }}
         >
           <h1 className="text-4xl text-[#d13c1b] ml-2 ">{data}</h1>
         </div>
