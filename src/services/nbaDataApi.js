@@ -1,13 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const cryptoApiHeaders = {
+const nbaApiHeaders = {
   "X-RapidAPI-Key": process.env.REACT_APP_KEY,
   "X-RapidAPI-Host": "free-nba.p.rapidapi.com",
 };
 
 const baseUrl = "https://free-nba.p.rapidapi.com";
 
-const createRequest = (url) => ({ url, headers: cryptoApiHeaders });
+const createRequest = (url) => ({ url, headers: nbaApiHeaders });
 
 export const nbaDataApi = createApi({
   reducerPath: "nbaDataApi",
