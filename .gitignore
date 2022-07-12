@@ -36,3 +36,4 @@ typings/
 
 .env.development
 src/components/teamcardcopy
+src/assets
