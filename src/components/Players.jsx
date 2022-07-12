@@ -21,8 +21,12 @@ const Players = () => {
   if (isFetching) return "Loading...";
   return (
     <>
-      <div>
-        <input placeholder="Search" onChange={(e) => setName(e.target.value)} />
+      <div className="flex justify-center items-center">
+        <input
+          placeholder="Search player..."
+          onChange={(e) => setName(e.target.value)}
+          className="w-3/4 mt-4 mb-4 p-4 border-2 focus:outline-none focus:border-violet-400 rounded shadow-md"
+        />
       </div>
       <div>
         <TableContainer
