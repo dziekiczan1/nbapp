@@ -7,6 +7,13 @@
   border-radius: 0.375rem;
 }
 
+@media only screen and (max-width: 470px) {
+  .flip-card {
+    width: 220px;
+    height: 300px;
+  }
+}
+
 .flip-card-inner {
   position: relative;
   width: 100%;
@@ -36,7 +43,6 @@
 
 .flip-card-back {
   background-color: #f9ebc8;
-  color: #000;
   transform: rotateY(180deg);
   display: flex;
   justify-content: center;

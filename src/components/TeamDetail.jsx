@@ -37,7 +37,7 @@ const TeamDetail = () => {
           style={{ height: "350px" }}
         />
       </div>
-      <div className="flex flex-row justify-center items-center gap-20">
+      <div className="flex flex-row flex-wrap justify-center items-center gap-20">
         <CardFlip data={data.city} name="Origin City" />
         <CardFlip data={data.conference} name="Conference" />
         <CardFlip data={data.division} name="Division" />

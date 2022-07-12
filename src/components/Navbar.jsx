@@ -11,9 +11,9 @@ import { FaBasketballBall } from "react-icons/fa";
 const Navbar = () => {
   const divStyles =
     "flex flex-col md:flex-row md:justify-center items-center pb-2 text-[#F9EBC8] hover:text-[#d13c1b] transition fade-in-out";
-  const iconStyles = "text-2xl md:text-4xl";
+  const iconStyles = "text-2xl sm:text-4xl";
   const linkStyles =
-    "font-bold text-sm md:text-lg uppercase pt-2 md:pt-0 md:ml-4 sm:content-none";
+    "hidden font-bold text-sm md:text-lg uppercase pt-2 md:pt-0 md:ml-4 lg:block";
 
   return (
     <div className="flex flex-col justify-around cursor-pointer w-full">
@@ -31,7 +31,9 @@ const Navbar = () => {
       </div>
       <div className={divStyles}>
         <AiOutlineTeam className={iconStyles} />
-        <p className={linkStyles}><Link to="/players">Players</Link></p>
+        <p className={linkStyles}>
+          <Link to="/players">Players</Link>
+        </p>
       </div>
       <div className={divStyles}>
         <AiOutlineAreaChart className={iconStyles} />
