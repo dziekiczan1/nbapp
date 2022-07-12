@@ -10,9 +10,19 @@ const Teams = () => {
   if (isFetching) return "Loading...";
 
   return (
-    <>
-      <div className="mt-4">
-        <h1 className="text-4xl font-bold">Atlantic</h1>
+    <div>
+      <div className="mt-4 flex flex-col justify-center items-center">
+        <h1 className="text-4xl font-bold m-8 mb-4 text-[#d13c1b]">Atlantic</h1>
+        <hr
+          style={{
+            marginBottom: "2rem",
+            width: "80%",
+            height: "1px",
+            border: "0",
+            backgroundImage:
+              "linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))",
+          }}
+        ></hr>
         <div className="flex flex-wrap justify-center items-center">
           {globalData.map((team) => {
             if (team.division === "Atlantic")
@@ -29,8 +39,18 @@ const Teams = () => {
           })}
         </div>
       </div>
-      <div className="mt-4">
-        <h1 className="text-4xl font-bold">Central</h1>
+      <div className="mt-4 flex flex-col justify-center items-center">
+        <h1 className="text-4xl font-bold m-8 mb-4 text-[#d13c1b]">Central</h1>
+        <hr
+          style={{
+            marginBottom: "2rem",
+            width: "80%",
+            height: "1px",
+            border: "0",
+            backgroundImage:
+              "linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))",
+          }}
+        ></hr>
         <div className="flex flex-wrap justify-center items-center">
           {globalData.map((team) => {
             if (team.division === "Central")
@@ -47,8 +67,20 @@ const Teams = () => {
           })}
         </div>
       </div>
-      <div className="mt-4">
-        <h1 className="text-4xl font-bold">Southeast</h1>
+      <div className="mt-4 flex flex-col justify-center items-center">
+        <h1 className="text-4xl font-bold m-8 mb-4 text-[#d13c1b]">
+          Southeast
+        </h1>
+        <hr
+          style={{
+            marginBottom: "2rem",
+            width: "80%",
+            height: "1px",
+            border: "0",
+            backgroundImage:
+              "linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))",
+          }}
+        ></hr>
         <div className="flex flex-wrap justify-center items-center">
           {globalData.map((team) => {
             if (team.division === "Southeast")
@@ -65,8 +97,20 @@ const Teams = () => {
           })}
         </div>
       </div>
-      <div className="mt-4">
-        <h1 className="text-4xl font-bold">Northwest</h1>
+      <div className="mt-4 flex flex-col justify-center items-center">
+        <h1 className="text-4xl font-bold m-8 mb-4 text-[#d13c1b]">
+          Northwest
+        </h1>
+        <hr
+          style={{
+            marginBottom: "2rem",
+            width: "80%",
+            height: "1px",
+            border: "0",
+            backgroundImage:
+              "linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))",
+          }}
+        ></hr>
         <div className="flex flex-wrap justify-center items-center">
           {globalData.map((team) => {
             if (team.division === "Northwest")
@@ -83,8 +127,18 @@ const Teams = () => {
           })}
         </div>
       </div>
-      <div className="mt-4">
-        <h1 className="text-4xl font-bold">Pacific</h1>
+      <div className="mt-4 flex flex-col justify-center items-center">
+        <h1 className="text-4xl font-bold m-8 mb-4 text-[#d13c1b]">Pacific</h1>
+        <hr
+          style={{
+            marginBottom: "2rem",
+            width: "80%",
+            height: "1px",
+            border: "0",
+            backgroundImage:
+              "linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))",
+          }}
+        ></hr>
         <div className="flex flex-wrap justify-center items-center">
           {globalData.map((team) => {
             if (team.division === "Pacific")
@@ -101,8 +155,20 @@ const Teams = () => {
           })}
         </div>
       </div>
-      <div className="mt-4">
-        <h1 className="text-4xl font-bold">Southwest</h1>
+      <div className="mt-4 flex flex-col justify-center items-center">
+        <h1 className="text-4xl font-bold m-8 mb-4 text-[#d13c1b]">
+          Southwest
+        </h1>
+        <hr
+          style={{
+            marginBottom: "2rem",
+            width: "80%",
+            height: "1px",
+            border: "0",
+            backgroundImage:
+              "linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))",
+          }}
+        ></hr>
         <div className="flex flex-wrap justify-center items-center">
           {globalData.map((team) => {
             if (team.division === "Southwest")
@@ -119,7 +185,7 @@ const Teams = () => {
           })}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
