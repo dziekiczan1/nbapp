@@ -82,7 +82,7 @@ const Players = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {players.data
+              {players?.data
                 .filter((val) => {
                   if (name === "") {
                     return val;
