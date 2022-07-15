@@ -10,6 +10,7 @@ const TeamCard = ({ nameTeam, abb, id }) => {
             <img
               src={`https://cdn.nba.net/assets/logos/teams/secondary/web/${abb}.svg`}
               className="transition ease-in-out hover:scale-150 duration-300"
+              alt={nameTeam}
             />
           </div>
         </div>

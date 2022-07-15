@@ -37,6 +37,7 @@ const TeamDetail = () => {
         <img
           src={`https://cdn.nba.net/assets/logos/teams/secondary/web/${data.abbreviation}.svg`}
           style={{ height: "350px" }}
+          alt={data.full_name}
         />
       </div>
       <div className="flex flex-row flex-wrap justify-center items-center gap-20">
