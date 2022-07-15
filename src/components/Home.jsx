@@ -22,22 +22,20 @@ const Home = () => {
     textAlign: "center",
     background: "#FEFBE7",
     objectFit: "cover",
+    overflow: "hidden",
   };
 
   if (!nbaNews?.value) return "Loading...";
-
-  console.log(nbaNews);
-
   return (
     <>
       <div className="flex flex-row w-full">
-        <div className="flex flex-col w-1/2">
+        <div className="flex flex-col w-full md:w-1/2">
           <div className="flex flex-col items-center py-4 px-8">
             <p className="text-xl text-gray-300 mb-2">Choose your news...</p>
             <select
               placeholder="Choose category"
               onChange={(e) => setCategory(e.target.value)}
-              className="border-2 w-1/2 rounded shadow-md p-2"
+              className="border-2  w-full md:w-1/2 rounded shadow-md p-2"
             >
               <option value="Nba" className="bg-[#FEFBE7] text-lg">
                 Nba News
@@ -53,7 +51,7 @@ const Home = () => {
             {nbaNews.value.map((news, i) => (
               <ul key={i}>
                 <li>
-                  <div className="flex flex-row hover:bg-[#fdf6c7] p-4">
+                  <div className="flex flex-col justify-center items-center md:flex-row md:justify-start md:items-start hover:bg-[#fdf6c7] p-4">
                     <img
                       src={news?.image?.thumbnail?.contentUrl || noImage}
                       alt={news.name}
@@ -78,7 +76,7 @@ const Home = () => {
             ))}
           </div>
         </div>
-        <div className="w-1/2 py-4 px-8">
+        <div className="hidden md:block w-1/2 py-4 px-8">
           <img src={nbalogo} alt="Nba Logo" />
           <div>
             <Carousel autoplay>

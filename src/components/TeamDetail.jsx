@@ -1,6 +1,7 @@
 import React from "react";
 import { useGetTeamQuery } from "../services/nbaDataApi";
 import { useParams } from "react-router-dom";
+import { getMainColor, getSecondaryColor } from "nba-color";
 
 import CardFlip from "./CardFlip";
 
@@ -15,9 +16,11 @@ const TeamDetail = () => {
   const { id } = useParams();
   const { data, isFetching } = useGetTeamQuery(id);
   if (isFetching) return "Loading...";
+  const colorPrimary = getMainColor(data.abbreviation);
+  const colorSecondary = getSecondaryColor(data.abbreviation);
 
   return (
-    <div className="mt-4 flex flex-col justify-center items-center">
+    <div className="mt-4 py-4 flex flex-col justify-center items-center">
       <h1 className="text-4xl font-bold m-8 mb-4 text-[#d13c1b]">
         {data.full_name}
       </h1>
@@ -25,10 +28,9 @@ const TeamDetail = () => {
         style={{
           marginBottom: "2rem",
           width: "80%",
-          height: "1px",
+          height: "5px",
           border: "0",
-          backgroundImage:
-            "linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))",
+          backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0), ${colorSecondary.hex},${colorPrimary.hex}, ${colorSecondary.hex}, rgba(0, 0, 0, 0))`,
         }}
       ></hr>
       <div className="flex justify-center items-center overflow-hidden">

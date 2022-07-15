@@ -44,7 +44,7 @@ const Players = () => {
             }}
             aria-label="customized table"
           >
-            <TableHead>
+            <TableHead className="bg-[#fdf6c7]">
               <TableRow
                 style={{
                   width: "100%",
@@ -100,7 +100,7 @@ const Players = () => {
                       display: "flex",
                       flexDirection: "row",
                     }}
-                    className="hover:bg-[#f0f0f0] cursor-pointer"
+                    className="hover:bg-[#fdf6c7]"
                   >
                     <TableCell component="th" scope="row" className="w-1/4">
                       {player.first_name} {player.last_name}
