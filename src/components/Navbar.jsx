@@ -41,7 +41,9 @@ const Navbar = () => {
       </div>
       <div className={divStyles}>
         <AiOutlineContacts className={iconStyles} />
-        <p className={linkStyles}>Contact</p>
+        <p className={linkStyles}>
+          <Link to="/contact">Contact</Link>
+        </p>
       </div>
     </div>
   );

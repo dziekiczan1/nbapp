@@ -7,6 +7,7 @@ import TeamDetail from "./components/TeamDetail";
 import Teams from "./components/Teams";
 import Home from "./components/Home";
 import Players from "./components/Players";
+import Contact from "./components/Contact";
 
 const App = () => {
   return (
@@ -22,7 +23,8 @@ const App = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/teams" element={<Teams />} />
                 <Route path="/teams/:id" element={<TeamDetail />} />
-                <Route path="/players/" element={<Players />} />
+                <Route path="/players" element={<Players />} />
+                <Route path="/contact" element={<Contact />} />
               </Routes>
             </Layout>
           </div>
