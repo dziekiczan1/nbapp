@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { useGetTeamsQuery } from "../services/nbaDataApi";
 import { useGetNbaNewsQuery } from "../services/nbaNewsApi";
 import nbalogo from "../assets/NBAlogo.jpg";
-
+import slider1 from "../assets/slider1.jpg";
+import slider2 from "../assets/slider2.jpg";
+import slider3 from "../assets/slider3.jpg";
+import slider4 from "../assets/slider4.jpg";
+import { Carousel } from "antd";
+import "./Slider.css";
 const Home = () => {
   const [category, setCategory] = useState("Atlanta Hawks");
   const { data: teams } = useGetTeamsQuery();
@@ -12,6 +17,12 @@ const Home = () => {
   });
 
   const noImage = "https://piotr.rzadkowolski.dev/noimage.png";
+
+  const contentStyle = {
+    textAlign: "center",
+    background: "#FEFBE7",
+    objectFit: "cover",
+  };
 
   if (!nbaNews?.value) return "Loading...";
 
@@ -38,11 +49,11 @@ const Home = () => {
               ))}
             </select>
           </div>
-          <div className="flex flex-col flex-wrap shadow-md bg-[#FEFBE7] cursor-pointer gap-6 px-8 py-4 mt-4">
+          <div className="flex flex-col flex-wrap shadow-md bg-[#FEFBE7] cursor-pointer gap-6 w-full mt-4">
             {nbaNews.value.map((news, i) => (
               <ul key={i}>
                 <li>
-                  <div className="flex flex-row">
+                  <div className="flex flex-row hover:bg-[#fdf6c7] p-4">
                     <img
                       src={news?.image?.thumbnail?.contentUrl || noImage}
                       alt={news.name}
@@ -61,7 +72,7 @@ const Home = () => {
                     </div>
                   </div>
 
-                  <hr className="my-2" />
+                  <hr className="mx-2" />
                 </li>
               </ul>
             ))}
@@ -69,6 +80,30 @@ const Home = () => {
         </div>
         <div className="w-1/2 py-4 px-8">
           <img src={nbalogo} alt="Nba Logo" />
+          <div>
+            <Carousel autoplay>
+              <div>
+                <h3 style={contentStyle}>
+                  <img src={slider1} alt="Slider" />
+                </h3>
+              </div>
+              <div>
+                <h3 style={contentStyle}>
+                  <img src={slider2} alt="Slider" />
+                </h3>
+              </div>
+              <div>
+                <h3 style={contentStyle}>
+                  <img src={slider3} alt="Slider" />
+                </h3>
+              </div>
+              <div>
+                <h3 style={contentStyle}>
+                  <img src={slider4} alt="Slider" />
+                </h3>
+              </div>
+            </Carousel>
+          </div>
         </div>
       </div>
     </>
