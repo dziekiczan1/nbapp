@@ -2,20 +2,29 @@ import React from "react";
 import { useGetTeamQuery } from "../services/nbaDataApi";
 import { useParams } from "react-router-dom";
 import { getMainColor, getSecondaryColor } from "nba-color";
-
+import { Spin } from "antd";
 import CardFlip from "./CardFlip";
-
-// style={{
-//   backgroundImage: `url(https://cdn.nba.net/assets/logos/teams/secondary/web/${data.abbreviation}.svg)`;
-//   backgroundPosition: "center",
-//   backgroundSize: "cover",
-//   backgroundRepeat: "no-repeat"
-// }}'
 
 const TeamDetail = () => {
   const { id } = useParams();
-  const { data, isFetching } = useGetTeamQuery(id);
-  if (isFetching) return "Loading...";
+  const { data, isFetching, isLoading, error } = useGetTeamQuery(id);
+
+  if (isLoading || isFetching)
+    return (
+      <div className="flex flex-col justify-center items-center h-screen">
+        <Spin size="large" />
+        <p className="text-4xl">Loading...</p>
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="flex flex-col justify-center items-center h-screen">
+        <Spin size="large" />
+        <p className="text-4xl">There is an error. Sorry.</p>
+      </div>
+    );
+
   const colorPrimary = getMainColor(data.abbreviation);
   const colorSecondary = getSecondaryColor(data.abbreviation);
 

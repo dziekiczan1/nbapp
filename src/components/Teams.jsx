@@ -39,7 +39,7 @@ const Teams = () => {
           }}
         ></hr>
         <div className="flex flex-wrap justify-center items-center">
-          {globalData.filter((team) => {
+          {globalData.map((team) => {
             if (team.division === "Atlantic") {
               return (
                 <TeamCard
