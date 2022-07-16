@@ -1,13 +1,28 @@
 import React from "react";
 import { useGetTeamsQuery } from "../services/nbaDataApi";
+import { Spin } from "antd";
 
 import TeamCard from "./TeamCard";
 
 const Teams = () => {
-  const { data, isFetching } = useGetTeamsQuery();
+  const { data, isFetching, isLoading, error } = useGetTeamsQuery();
   const globalData = data?.data;
 
-  if (isFetching) return "Loading...";
+  if (isLoading || isFetching)
+    return (
+      <div className="flex flex-col justify-center items-center h-screen">
+        <Spin size="large" />
+        <p className="text-4xl">Loading...</p>
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="flex flex-col justify-center items-center h-screen">
+        <Spin size="large" />
+        <p className="text-4xl">There is an error. Sorry.</p>
+      </div>
+    );
 
   return (
     <div>
@@ -24,8 +39,8 @@ const Teams = () => {
           }}
         ></hr>
         <div className="flex flex-wrap justify-center items-center">
-          {globalData.map((team) => {
-            if (team.division === "Atlantic")
+          {globalData.filter((team) => {
+            if (team.division === "Atlantic") {
               return (
                 <TeamCard
                   key={team.id}
@@ -36,6 +51,9 @@ const Teams = () => {
                   id={team.id}
                 />
               );
+            } else {
+              return null;
+            }
           })}
         </div>
       </div>
@@ -53,7 +71,7 @@ const Teams = () => {
         ></hr>
         <div className="flex flex-wrap justify-center items-center">
           {globalData.map((team) => {
-            if (team.division === "Central")
+            if (team.division === "Central") {
               return (
                 <TeamCard
                   key={team.id}
@@ -64,6 +82,9 @@ const Teams = () => {
                   id={team.id}
                 />
               );
+            } else {
+              return null;
+            }
           })}
         </div>
       </div>
@@ -83,7 +104,7 @@ const Teams = () => {
         ></hr>
         <div className="flex flex-wrap justify-center items-center">
           {globalData.map((team) => {
-            if (team.division === "Southeast")
+            if (team.division === "Southeast") {
               return (
                 <TeamCard
                   key={team.id}
@@ -94,6 +115,9 @@ const Teams = () => {
                   id={team.id}
                 />
               );
+            } else {
+              return null;
+            }
           })}
         </div>
       </div>
@@ -113,7 +137,7 @@ const Teams = () => {
         ></hr>
         <div className="flex flex-wrap justify-center items-center">
           {globalData.map((team) => {
-            if (team.division === "Northwest")
+            if (team.division === "Northwest") {
               return (
                 <TeamCard
                   key={team.id}
@@ -124,6 +148,9 @@ const Teams = () => {
                   id={team.id}
                 />
               );
+            } else {
+              return null;
+            }
           })}
         </div>
       </div>
@@ -141,7 +168,7 @@ const Teams = () => {
         ></hr>
         <div className="flex flex-wrap justify-center items-center">
           {globalData.map((team) => {
-            if (team.division === "Pacific")
+            if (team.division === "Pacific") {
               return (
                 <TeamCard
                   key={team.id}
@@ -152,6 +179,9 @@ const Teams = () => {
                   id={team.id}
                 />
               );
+            } else {
+              return null;
+            }
           })}
         </div>
       </div>
@@ -171,7 +201,7 @@ const Teams = () => {
         ></hr>
         <div className="flex flex-wrap justify-center items-center">
           {globalData.map((team) => {
-            if (team.division === "Southwest")
+            if (team.division === "Southwest") {
               return (
                 <TeamCard
                   key={team.id}
@@ -182,6 +212,9 @@ const Teams = () => {
                   id={team.id}
                 />
               );
+            } else {
+              return null;
+            }
           })}
         </div>
       </div>

@@ -6,12 +6,17 @@ import slider1 from "../assets/slider1.jpg";
 import slider2 from "../assets/slider2.jpg";
 import slider3 from "../assets/slider3.jpg";
 import slider4 from "../assets/slider4.jpg";
-import { Carousel } from "antd";
+import { Carousel, Spin } from "antd";
 import "./Slider.css";
 const Home = () => {
   const [category, setCategory] = useState("Atlanta Hawks");
   const { data: teams } = useGetTeamsQuery();
-  const { data: nbaNews } = useGetNbaNewsQuery({
+  const {
+    data: nbaNews,
+    error,
+    isLoading,
+    isFetching,
+  } = useGetNbaNewsQuery({
     category,
     count: 10,
   });
@@ -25,7 +30,21 @@ const Home = () => {
     overflow: "hidden",
   };
 
-  if (!nbaNews?.value) return "Loading...";
+  if (isLoading || isFetching)
+    return (
+      <div className="flex flex-col justify-center items-center h-screen">
+        <Spin size="large" />
+        <p className="text-4xl">Loading...</p>
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="flex flex-col justify-center items-center h-screen">
+        <Spin size="large" />
+        <p className="text-4xl">There is an error. Sorry.</p>
+      </div>
+    );
   return (
     <>
       <div className="flex flex-row w-full">

@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import {
-  useGetPlayersQuery,
-  useGetPlayersNameQuery,
-} from "../services/nbaDataApi";
+import { useGetPlayersQuery } from "../services/nbaDataApi";
 import { MdOutlineNavigateNext, MdOutlineNavigateBefore } from "react-icons/md";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -11,14 +8,34 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { Spin } from "antd";
 
 const Players = () => {
   const [page, setPage] = useState("");
   const [name, setName] = useState("");
-  const { data: players, isFetching } = useGetPlayersQuery(page);
-  // const { data } = useGetPlayersNameQuery(name);
+  const {
+    data: players,
+    isFetching,
+    isLoading,
+    error,
+  } = useGetPlayersQuery(page);
 
-  if (isFetching) return "Loading...";
+  if (isLoading || isFetching)
+    return (
+      <div className="flex flex-col justify-center items-center h-screen">
+        <Spin size="large" />
+        <p className="text-4xl">Loading...</p>
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="flex flex-col justify-center items-center h-screen">
+        <Spin size="large" />
+        <p className="text-4xl">There is an error. Sorry.</p>
+      </div>
+    );
+
   return (
     <>
       <div className="flex justify-center items-center">
@@ -90,6 +107,8 @@ const Players = () => {
                     val.first_name.toLowerCase().includes(name.toLowerCase())
                   ) {
                     return val;
+                  } else {
+                    return null;
                   }
                 })
                 .map((player) => (
