@@ -9,10 +9,12 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Spin } from "antd";
+import { useSearchParams } from "react-router-dom";
 
 const Players = () => {
   const [page, setPage] = useState("");
   const [input, setInput] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
   const {
     data: players,
     isFetching,
@@ -44,10 +46,14 @@ const Players = () => {
     <>
       <div className="flex justify-center items-center">
         <input
+          name="search"
           value={input}
           placeholder="Search player..."
           autoFocus
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => {
+            setInput(e.target.value);
+            setSearchParams({ [e.target.name]: e.target.value });
+          }}
           className="w-3/4 mt-4 mb-4 p-4 border-2 focus:outline-none focus:border-violet-400 rounded shadow-md"
         />
       </div>
