@@ -23,11 +23,12 @@ export const nbaDataApi = createApi({
       providesTags: ["Teams"],
     }),
     getPlayers: builder.query({
-      query: (page) => createRequest(`/players/?page=${page}&per_page=50`),
+      query: ({ page, input }) =>
+        createRequest(`/players/?page=${page}&per_page=50&search=${input}`),
       providesTags: ["Players"],
     }),
-    getPlayersName: builder.query({
-      query: (name) => createRequest(`/players/?page=0&search=${name}`),
+    getGames: builder.query({
+      query: (page) => createRequest(`/games?page=${page}&per_page=50`),
       providesTags: ["Players"],
     }),
   }),
@@ -37,5 +38,6 @@ export const {
   useGetTeamsQuery,
   useGetTeamQuery,
   useGetPlayersQuery,
-  useGetPlayersNameQuery,
+  useGetGamesQuery,
+  // useGetPlayersNameQuery,
 } = nbaDataApi;

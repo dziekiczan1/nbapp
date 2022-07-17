@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useGetPlayersQuery } from "../services/nbaDataApi";
 import { MdOutlineNavigateNext, MdOutlineNavigateBefore } from "react-icons/md";
 import Table from "@mui/material/Table";
@@ -12,13 +12,18 @@ import { Spin } from "antd";
 
 const Players = () => {
   const [page, setPage] = useState("");
-  const [name, setName] = useState("");
+  const [input, setInput] = useState("");
   const {
     data: players,
     isFetching,
     isLoading,
     error,
-  } = useGetPlayersQuery(page);
+  } = useGetPlayersQuery({ page, input });
+  const [playersList, setPlayersList] = useState();
+
+  useEffect(() => {
+    setPlayersList(players?.data);
+  }, [players, input]);
 
   if (isLoading || isFetching)
     return (
@@ -35,13 +40,14 @@ const Players = () => {
         <p className="text-4xl">There is an error. Sorry.</p>
       </div>
     );
-
   return (
     <>
       <div className="flex justify-center items-center">
         <input
+          value={input}
           placeholder="Search player..."
-          onChange={(e) => setName(e.target.value)}
+          autoFocus
+          onChange={(e) => setInput(e.target.value)}
           className="w-3/4 mt-4 mb-4 p-4 border-2 focus:outline-none focus:border-violet-400 rounded shadow-md"
         />
       </div>
@@ -99,39 +105,27 @@ const Players = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {players?.data
-                .filter((val) => {
-                  if (name === "") {
-                    return val;
-                  } else if (
-                    val.first_name.toLowerCase().includes(name.toLowerCase())
-                  ) {
-                    return val;
-                  } else {
-                    return null;
-                  }
-                })
-                .map((player) => (
-                  <TableRow
-                    key={player.id}
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      flexDirection: "row",
-                    }}
-                    className="hover:bg-[#fdf6c7]"
-                  >
-                    <TableCell component="th" scope="row" className="w-1/4">
-                      {player.first_name} {player.last_name}
-                    </TableCell>
-                    <TableCell align="right" className="w-1/4">
-                      {player.position}
-                    </TableCell>
-                    <TableCell align="right" className="w-2/4">
-                      {player.team.full_name}
-                    </TableCell>
-                  </TableRow>
-                ))}
+              {playersList?.map((player) => (
+                <TableRow
+                  key={player.id}
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "row",
+                  }}
+                  className="hover:bg-[#fdf6c7]"
+                >
+                  <TableCell component="th" scope="row" className="w-1/4">
+                    {player.first_name} {player.last_name}
+                  </TableCell>
+                  <TableCell align="right" className="w-1/4">
+                    {player.position}
+                  </TableCell>
+                  <TableCell align="right" className="w-2/4">
+                    {player.team.full_name}
+                  </TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </TableContainer>

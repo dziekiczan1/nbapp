@@ -49,7 +49,7 @@ const TeamDetail = () => {
           alt={data.full_name}
         />
       </div>
-      <div className="flex flex-row flex-wrap justify-center items-center gap-20">
+      <div className="flex flex-row flex-wrap justify-center items-center gap-20 mb-8">
         <CardFlip data={data.city} name="Origin City" />
         <CardFlip data={data.conference} name="Conference" />
         <CardFlip data={data.division} name="Division" />
