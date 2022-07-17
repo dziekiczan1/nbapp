@@ -39,5 +39,4 @@ export const {
   useGetTeamQuery,
   useGetPlayersQuery,
   useGetGamesQuery,
-  // useGetPlayersNameQuery,
 } = nbaDataApi;
