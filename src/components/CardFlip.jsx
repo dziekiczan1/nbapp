@@ -11,6 +11,7 @@ const CardFlip = ({ data, name }) => {
             alt={data}
             style={{
               objectFit: "cover",
+              borderRadius: "0.375rem",
             }}
             className="h-full w-full"
           />

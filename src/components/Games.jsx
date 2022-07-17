@@ -11,7 +11,7 @@ import Paper from "@mui/material/Paper";
 import { Spin } from "antd";
 
 const Games = () => {
-  const [page, setPage] = useState("");
+  const [page, setPage] = useState();
   const { data: games, isFetching, isLoading, error } = useGetGamesQuery(page);
 
   useEffect(() => {
