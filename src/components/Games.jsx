@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useGetGamesQuery } from "../services/nbaDataApi";
 import { MdOutlineNavigateNext, MdOutlineNavigateBefore } from "react-icons/md";
 import Table from "@mui/material/Table";
@@ -13,6 +13,10 @@ import { Spin } from "antd";
 const Games = () => {
   const [page, setPage] = useState("");
   const { data: games, isFetching, isLoading, error } = useGetGamesQuery(page);
+
+  useEffect(() => {
+    setPage(games?.meta.total_pages);
+  }, []);
 
   if (isLoading || isFetching)
     return (
@@ -100,6 +104,7 @@ const Games = () => {
                 .sort((a, b) => {
                   var dateA = new Date(a.date).getTime();
                   var dateB = new Date(b.date).getTime();
+
                   return dateB > dateA ? 1 : -1;
                 })
                 .map((game) => (

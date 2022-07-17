@@ -23,7 +23,7 @@ const Players = () => {
 
   useEffect(() => {
     setPlayersList(players?.data);
-  }, [players, input]);
+  }, [players, input, page]);
 
   if (isLoading || isFetching)
     return (
@@ -148,13 +148,22 @@ const Players = () => {
             </button>
           </>
         )}
-        {players.meta.current_page === players.meta.total_pages ? (
-          <button
-            onClick={(e) => setPage(e.target.innerText)}
-            className="border-2 rounded px-2 py-1 bg-[#F9EBC8] cursor-pointer shadow-md text-[#d13c1b]"
-          >
-            {players.meta.current_page - 1}
-          </button>
+        {players.meta.current_page !== 2 && players.meta.current_page !== 1 ? (
+          <>
+            <button
+              onClick={(e) => setPage(e.target.innerText)}
+              className="border-2 rounded px-2 py-1 bg-[#F9EBC8] cursor-pointer shadow-md text-[#d13c1b]"
+            >
+              {players.meta.current_page - 1}
+            </button>
+
+            <button
+              onClick={(e) => setPage(e.target.innerText)}
+              className="border-2 rounded px-2 py-1 bg-[#d13c1b] cursor-pointer shadow-md text-[#F9EBC8] font-bold"
+            >
+              {players.meta.current_page}
+            </button>
+          </>
         ) : (
           <button
             onClick={(e) => setPage(e.target.innerText)}
