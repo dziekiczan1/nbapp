@@ -26,8 +26,10 @@ const Teams = () => {
 
   return (
     <div>
-      <div className="mt-4 flex flex-col justify-center items-center">
-        <h1 className="text-4xl font-bold m-8 mb-4 text-[#d13c1b]">Atlantic</h1>
+      <div className="flex flex-col justify-center items-center">
+        <h1 className="text-4xl font-bold mt-2 mb-4 text-[#d13c1b]">
+          Atlantic
+        </h1>
         <hr
           style={{
             marginBottom: "2rem",

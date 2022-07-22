@@ -8,6 +8,8 @@ import slider3 from "../assets/slider3.jpg";
 import slider4 from "../assets/slider4.jpg";
 import { Carousel, Spin } from "antd";
 import "./Slider.css";
+import Standings from "./Standings";
+
 const Home = () => {
   const [category, setCategory] = useState("Atlanta Hawks");
   const { data: teams } = useGetTeamsQuery();
@@ -97,7 +99,7 @@ const Home = () => {
         </div>
         <div className="hidden md:block w-1/2 py-4 px-8">
           <img src={nbalogo} alt="Nba Logo" />
-          <div>
+          <div className="mt-8 mb-8">
             <Carousel autoplay>
               <div>
                 <h3 style={contentStyle}>
@@ -121,6 +123,7 @@ const Home = () => {
               </div>
             </Carousel>
           </div>
+          <Standings />
         </div>
       </div>
     </>
