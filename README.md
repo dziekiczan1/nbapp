@@ -2,7 +2,7 @@
 
 ### [Live Site](https://nbapplication.netlify.app/)
 
-![NBApplication](https://piotr.rzadkowolski.dev/assets/proj11.jpg)
+![NBApplication](https://piotr.rzadkowolski.dev/assets/proj11.webp)
 
 ## Introduction
 This is a code repository for the **NBApplication**. 
